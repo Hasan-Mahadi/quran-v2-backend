@@ -1,24 +1,14 @@
 
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "src/app.ts",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": [
-          "src/data/quran-dataset/source/**/*.json",
-          "src/data/quran-dataset/source/audio/**/*.mp3"
-        ],
-        "excludeFiles": [
-          "tests/**/*",
-          "scripts/**/*",
-          "**/*.test.ts",
-          "src/data/quran-dataset/source/audio/**/index.json"
-        ]
-      }
+  "functions": {
+    "src/app.ts": {
+      "memory": 1024,
+      "maxDuration": 10,
+      "includeFiles": "src/data/quran-dataset/source/**/*.json",
+      "excludeFiles": "src/data/quran-dataset/source/audio/**/index.json"
     }
-  ],
+  },
   "routes": [
     {
       "src": "/health",
@@ -43,12 +33,6 @@
     "CORS_ORIGIN": "*",
     "MAX_JSON_SIZE": "10mb",
     "ENABLE_CACHE": "true"
-  },
-  "functions": {
-    "src/app.ts": {
-      "memory": 1024,
-      "maxDuration": 10
-    }
   },
   "headers": [
     {
