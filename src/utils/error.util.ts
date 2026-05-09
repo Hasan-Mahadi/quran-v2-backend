@@ -1,6 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ERROR_CODES, HTTP_STATUS } from "../constants/api.constants";
+
  
 
-import { ERROR_CODES, HTTP_STATUS } from '@/constants/api.constants';
+
 
 export class AppError extends Error {
   public readonly code: string;

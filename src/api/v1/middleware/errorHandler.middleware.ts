@@ -1,9 +1,10 @@
 
 import { Request, Response, NextFunction } from 'express';
-import { ApiResponse } from '@/utils/response.util';
-import { AppError } from '@/utils/error.util';
-import { LoggerUtil } from '@/utils/logger.util';
-import { HTTP_STATUS } from '@/constants/api.constants';
+import { LoggerUtil } from '../../../utils/logger.util';
+import { ApiResponse } from '../../../utils/response.util';
+import { AppError } from '../../../utils/error.util';
+import { HTTP_STATUS } from '../../../constants/api.constants';
+
 
 export class ErrorHandlerMiddleware {
   static handle(error: Error, req: Request, res: Response, _next: NextFunction) {

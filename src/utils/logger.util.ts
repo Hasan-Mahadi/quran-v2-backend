@@ -1,6 +1,7 @@
 // src/utils/logger.util.ts
 import winston from 'winston';
-import { config } from '@/config/environment.config';
+import { config } from '../config/environment.config';
+
 
 // Only show debug logs in development if explicitly enabled
 const logLevel = config.NODE_ENV === 'production' ? 'info' : (process.env.LOG_LEVEL || 'info');

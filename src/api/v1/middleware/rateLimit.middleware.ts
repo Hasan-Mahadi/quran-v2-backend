@@ -1,6 +1,7 @@
 
 import rateLimit from 'express-rate-limit';
-import { API_CONFIG } from '@/constants/api.constants';
+import { API_CONFIG } from '../../../constants/api.constants';
+
 
 export const rateLimitMiddleware = rateLimit({
   windowMs: API_CONFIG.RATE_LIMIT.WINDOW_MS,

@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
  
 
 import { Response } from 'express';
-import { HTTP_STATUS } from '@/constants/api.constants';
+import { HTTP_STATUS } from '../constants/api.constants';
+
 
 export interface ApiResponseMeta {
   pagination?: PaginationMeta;

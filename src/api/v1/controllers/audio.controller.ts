@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // src/api/v1/controllers/audio.controller.ts
 import { Request, Response } from 'express';
-import { AudioService } from '@/services/quran/audio.service';
-import { ApiResponse } from '@/utils/response.util';
+import { AudioService } from '../../../services/quran/audio.service';
+import { ApiResponse } from '../../../utils/response.util';
+
 
 export class AudioController {
   private audioService: AudioService;

@@ -2,9 +2,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // src/api/v1/controllers/search.controller.ts
 import { Request, Response } from 'express';
-import { SearchService } from '@/services/quran/search.service';
-import { ApiResponse, PaginationMeta } from '@/utils/response.util';
+
 import { SearchQueryDTO } from '../dto/search.dto';
+import { SearchService } from '../../../services/quran/search.service';
+import { ApiResponse, PaginationMeta } from '../../../utils/response.util';
 
 
 export class SearchController {

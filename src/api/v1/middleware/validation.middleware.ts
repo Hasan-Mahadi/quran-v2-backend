@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
 import { Request, Response, NextFunction } from 'express';
 import { AnyZodObject, ZodError } from 'zod';
-import { ApiResponse } from '@/utils/response.util';
-import { ValidationError } from '@/utils/error.util';
+import { ApiResponse } from '../../../utils/response.util';
+
 
 export class ValidationMiddleware {
   static validate(schema: AnyZodObject) {

@@ -1,8 +1,9 @@
  
 // src/api/v1/controllers/juz.controller.ts
 import { Request, Response } from 'express';
-import { JuzRepository } from '@/repositories/juz.repository';
-import { ApiResponse } from '@/utils/response.util';
+import { JuzRepository } from '../../../repositories/juz.repository';
+import { ApiResponse } from '../../../utils/response.util';
+
 
 export class JuzController {
   private juzRepository: JuzRepository;

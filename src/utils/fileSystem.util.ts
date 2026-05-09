@@ -6,7 +6,8 @@ import type { Stats } from "fs";
 import path from 'path';
 import { LoggerUtil } from './logger.util';
 import { BusinessError } from './error.util';
-import { ERROR_CODES } from '@/constants/api.constants';
+import { ERROR_CODES } from "../constants/api.constants";
+
 
 export class FileSystemUtil {
   private static instance: FileSystemUtil;

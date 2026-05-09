@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 // src/repositories/audio.repository.ts
-import { FileSystemUtil } from '@/utils/fileSystem.util';
-import { LoggerUtil } from '@/utils/logger.util';
-import { NotFoundError } from '@/utils/error.util';
-import { DATA_CONFIG } from '@/config/database.config';
+
 import path from 'path';
 import fs from 'fs';
+import { FileSystemUtil } from '../utils/fileSystem.util';
+import { DATA_CONFIG } from '../config/database.config';
+import { LoggerUtil } from '../utils/logger.util';
+import { NotFoundError } from '../utils/error.util';
 
 export interface AudioInfo {
   surahId: number;

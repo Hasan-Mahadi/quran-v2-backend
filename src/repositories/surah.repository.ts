@@ -4,11 +4,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 // src/repositories/surah.repository.ts
-import { FileSystemUtil } from '@/utils/fileSystem.util';
-import { LoggerUtil } from '@/utils/logger.util';
-import { NotFoundError } from '@/utils/error.util';
-import { DATA_CONFIG } from '@/config/database.config';
+
 import path from 'path';
+import { FileSystemUtil } from '../utils/fileSystem.util';
+import { DATA_CONFIG } from '../config/database.config';
+import { LoggerUtil } from '../utils/logger.util';
+import { NotFoundError } from '../utils/error.util';
 
 export interface SurahIndexItem {
   place: string;

@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
 import { Request, Response } from 'express';
-import { SurahService } from '@/services/quran/surah.service';
-import { ApiResponse } from '@/utils/response.util';
+
+
 import { GetSurahParamsDTO, GetSurahQueryDTO, GetAyahsQueryDTO } from '../dto/surah.dto';
+import { SurahService } from '../../../services/quran/surah.service';
+import { ApiResponse } from '../../../utils/response.util';
 
 export class SurahController {
   private surahService: SurahService;

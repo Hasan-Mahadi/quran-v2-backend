@@ -1,8 +1,13 @@
+/* eslint-disable @typescript-eslint/require-await */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { AudioRepository } from '@/repositories/audio.repository';
-import { SurahRepository } from '@/repositories/surah.repository';
-import { NotFoundError, ValidationError } from '@/utils/error.util';
-import { LoggerUtil } from '@/utils/logger.util';
+import { AudioRepository } from '../../repositories/audio.repository';
+import { SurahRepository } from '../../repositories/surah.repository';
+import { NotFoundError, ValidationError } from '../../utils/error.util';
+import { LoggerUtil } from '../../utils/logger.util';
 
 export class AudioService {
   private audioRepository: AudioRepository;

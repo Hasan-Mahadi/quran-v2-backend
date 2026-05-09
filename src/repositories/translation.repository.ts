@@ -3,11 +3,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // src/repositories/translation.repository.ts
-import { FileSystemUtil } from '@/utils/fileSystem.util';
-import { LoggerUtil } from '@/utils/logger.util';
-import { DATA_CONFIG } from '@/config/database.config';
-import { SupportedLanguage } from '@/types/quran.types';
+
 import path from 'path';
+import { FileSystemUtil } from '../utils/fileSystem.util';
+import { SupportedLanguage } from '../constants/quran.constants';
+import { DATA_CONFIG } from '../config/database.config';
+import { LoggerUtil } from '../utils/logger.util';
 
 export class TranslationRepository {
   private fileSystem: FileSystemUtil;

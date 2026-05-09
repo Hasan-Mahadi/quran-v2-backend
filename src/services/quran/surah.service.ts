@@ -6,11 +6,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // src/services/quran/surah.service.ts
-import { SurahRepository } from '@/repositories/surah.repository';
-import { TranslationRepository } from '@/repositories/translation.repository';
-import { SupportedLanguage } from '@/types/quran.types';
-import { ValidationError } from '@/utils/error.util';
-import { QURAN_CONSTANTS } from '@/constants/quran.constants';
+
+import { QURAN_CONSTANTS, SupportedLanguage } from "../../constants/quran.constants";
+import { SurahRepository } from "../../repositories/surah.repository";
+import { TranslationRepository } from "../../repositories/translation.repository";
+import { ValidationError } from "../../utils/error.util";
+
 
 export class SurahService {
   private surahRepository: SurahRepository;

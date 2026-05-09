@@ -4,12 +4,18 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // src/services/quran/search.service.ts
-import { SurahRepository } from '@/repositories/surah.repository';
-import { TranslationRepository } from '@/repositories/translation.repository';
-import { SearchResult, SupportedLanguage } from '@/types/quran.types';
-import { ValidationError } from '@/utils/error.util';
-import { LoggerUtil } from '@/utils/logger.util';
-import { QURAN_CONSTANTS } from '@/constants/quran.constants';
+
+
+
+
+
+
+import { SurahRepository } from '../../repositories/surah.repository';
+import { QURAN_CONSTANTS, SupportedLanguage } from '../../constants/quran.constants';
+import { LoggerUtil } from '../../utils/logger.util';
+import { TranslationRepository } from '../../repositories/translation.repository';
+import { SearchResult } from '../../types/quran.types';
+import { ValidationError } from '../../utils/error.util';
 
 interface SearchIndexEntry {
   surahId: number;
