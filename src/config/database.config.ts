@@ -2,7 +2,7 @@
 import path from 'path';
 
 export const DATA_CONFIG = {
-  BASE_PATH: process.env.DATA_PATH || './src/data/quran-dataset',
+  BASE_PATH: process.env.DATA_PATH || './src/data/quran-dataset/source',
   
   SURAH_INDEX_FILE: path.join('source', 'surah.json'),
   JUZ_FILE: path.join('source', 'juz.json'),
