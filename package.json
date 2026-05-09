@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Production-grade Quran API with audio support",
   "main": "dist/app.js",
-"scripts": {
+  "scripts": {
     "dev": "npm run build && nodemon dist/app.js",
     "build": "tsc --project tsconfig.build.json",
     "vercel-build": "npm run build",
