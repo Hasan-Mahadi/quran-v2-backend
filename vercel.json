@@ -1,0 +1,70 @@
+
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "src/app.ts",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "src/data/quran-dataset/source/**/*.json",
+          "src/data/quran-dataset/source/audio/**/*.mp3"
+        ],
+        "excludeFiles": [
+          "tests/**/*",
+          "scripts/**/*",
+          "**/*.test.ts",
+          "src/data/quran-dataset/source/audio/**/index.json"
+        ]
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/health",
+      "dest": "/src/app.ts"
+    },
+    {
+      "src": "/api/v1/(.*)",
+      "dest": "/src/app.ts"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/src/app.ts"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "API_VERSION": "v1",
+    "CACHE_TTL": "3600",
+    "RATE_LIMIT_WINDOW_MS": "900000",
+    "RATE_LIMIT_MAX_REQUESTS": "100",
+    "LOG_LEVEL": "info",
+    "CORS_ORIGIN": "*",
+    "MAX_JSON_SIZE": "10mb",
+    "ENABLE_CACHE": "true"
+  },
+  "functions": {
+    "src/app.ts": {
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    },
+    {
+      "source": "/api/v1/audio/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ]
+}
