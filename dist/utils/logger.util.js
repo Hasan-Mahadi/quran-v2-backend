@@ -4,10 +4,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LoggerUtil = exports.logger = void 0;
+// src/utils/logger.util.ts
 const winston_1 = __importDefault(require("winston"));
 const environment_config_1 = require("../config/environment.config");
+// Only show debug logs in development if explicitly enabled
 const logLevel = environment_config_1.config.NODE_ENV === 'production' ? 'info' : (process.env.LOG_LEVEL || 'info');
 const logFormat = winston_1.default.format.combine(winston_1.default.format.timestamp(), winston_1.default.format.errors({ stack: true }), winston_1.default.format.printf(({ timestamp, level, message, stack, ...meta }) => {
+    // Skip debug logs unless specifically wanted
     if (level === 'debug' && process.env.SHOW_DEBUG !== 'true') {
         return '';
     }
@@ -43,6 +46,7 @@ class LoggerUtil {
         exports.logger.warn(message, meta);
     }
     static debug(message, meta) {
+        // Only log debug if explicitly enabled
         if (process.env.SHOW_DEBUG === 'true') {
             exports.logger.debug(message, meta);
         }

@@ -1,4 +1,12 @@
 "use strict";
+/* eslint-disable prefer-const */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// src/services/quran/surah.service.ts
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SurahService = void 0;
 const quran_constants_1 = require("../../constants/quran.constants");
@@ -6,6 +14,8 @@ const surah_repository_1 = require("../../repositories/surah.repository");
 const translation_repository_1 = require("../../repositories/translation.repository");
 const error_util_1 = require("../../utils/error.util");
 class SurahService {
+    surahRepository;
+    translationRepository;
     constructor() {
         this.surahRepository = new surah_repository_1.SurahRepository();
         this.translationRepository = new translation_repository_1.TranslationRepository();
@@ -26,6 +36,7 @@ class SurahService {
         const surahInfo = await this.surahRepository.getSurahInfo(id);
         const surahData = await this.surahRepository.findById(id);
         const translations = await this.translationRepository.getSurahTranslations(id, language);
+        // Handle different ayah structures
         let ayahs = surahData.ayahs || surahData.verses || [];
         const transformedAyahs = ayahs.map((ayah, index) => {
             const ayahNumber = ayah.number || ayah.numberInSurah || (index + 1);

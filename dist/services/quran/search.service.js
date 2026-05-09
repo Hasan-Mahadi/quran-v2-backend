@@ -1,4 +1,10 @@
 "use strict";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/require-await */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+// src/services/quran/search.service.ts
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SearchService = void 0;
 const surah_repository_1 = require("../../repositories/surah.repository");
@@ -7,10 +13,12 @@ const logger_util_1 = require("../../utils/logger.util");
 const translation_repository_1 = require("../../repositories/translation.repository");
 const error_util_1 = require("../../utils/error.util");
 class SearchService {
+    surahRepository;
+    translationRepository;
+    arabicIndex = {};
+    translationIndex = new Map();
+    isIndexed = false;
     constructor() {
-        this.arabicIndex = {};
-        this.translationIndex = new Map();
-        this.isIndexed = false;
         this.surahRepository = new surah_repository_1.SurahRepository();
         this.translationRepository = new translation_repository_1.TranslationRepository();
     }

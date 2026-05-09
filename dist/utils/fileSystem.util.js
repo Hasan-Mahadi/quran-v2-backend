@@ -1,4 +1,5 @@
 "use strict";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -43,9 +44,9 @@ const logger_util_1 = require("./logger.util");
 const error_util_1 = require("./error.util");
 const api_constants_1 = require("../constants/api.constants");
 class FileSystemUtil {
-    constructor() {
-        this.jsonCache = new Map();
-    }
+    static instance;
+    jsonCache = new Map();
+    constructor() { }
     static getInstance() {
         if (!this.instance) {
             this.instance = new FileSystemUtil();

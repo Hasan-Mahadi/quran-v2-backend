@@ -1,4 +1,5 @@
 "use strict";
+// src/repositories/juz.repository.ts
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -9,8 +10,9 @@ const fileSystem_util_1 = require("../utils/fileSystem.util");
 const database_config_1 = require("../config/database.config");
 const logger_util_1 = require("../utils/logger.util");
 class JuzRepository {
+    fileSystem;
+    juzCache = null;
     constructor() {
-        this.juzCache = null;
         this.fileSystem = fileSystem_util_1.FileSystemUtil.getInstance();
     }
     async findAll() {

@@ -1,8 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RateLimitError = exports.BusinessError = exports.NotFoundError = exports.ValidationError = exports.AppError = void 0;
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const api_constants_1 = require("../constants/api.constants");
 class AppError extends Error {
+    code;
+    statusCode;
+    details;
     constructor(code, message, statusCode = api_constants_1.HTTP_STATUS.BAD_REQUEST, details) {
         super(message);
         this.code = code;

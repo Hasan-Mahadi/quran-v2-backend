@@ -1,4 +1,5 @@
 "use strict";
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ValidationMiddleware = void 0;
 const zod_1 = require("zod");

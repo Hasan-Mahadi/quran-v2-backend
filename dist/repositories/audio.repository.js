@@ -1,4 +1,6 @@
 "use strict";
+/* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
+// src/repositories/audio.repository.ts
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -11,9 +13,10 @@ const database_config_1 = require("../config/database.config");
 const logger_util_1 = require("../utils/logger.util");
 const error_util_1 = require("../utils/error.util");
 class AudioRepository {
+    fileSystem;
+    audioCache = new Map();
+    audioIndexCache = new Map();
     constructor() {
-        this.audioCache = new Map();
-        this.audioIndexCache = new Map();
         this.fileSystem = fileSystem_util_1.FileSystemUtil.getInstance();
     }
     async getAudioIndex(surahId) {
@@ -41,7 +44,9 @@ class AudioRepository {
         if (this.audioCache.has(cacheKey)) {
             return this.audioCache.get(cacheKey);
         }
+        // Try both naming conventions: with and without leading zeros
         const audioPath1 = path_1.default.join(database_config_1.DATA_CONFIG.BASE_PATH, database_config_1.DATA_CONFIG.getAudioFile(surahId, ayahNumber));
+        // For files named like 001.mp3 (with leading zeros)
         const ayahPadded = ayahNumber.toString().padStart(3, '0');
         const audioPath2 = path_1.default.join(database_config_1.DATA_CONFIG.BASE_PATH, `source/audio/${surahId.toString().padStart(3, '0')}/${ayahPadded}.mp3`);
         let exists = await this.fileSystem.fileExists(audioPath1);
@@ -60,6 +65,7 @@ class AudioRepository {
                 exists: false,
             };
         }
+        // Try to get additional info from index
         const audioIndex = await this.getAudioIndex(surahId);
         const ayahPadded = ayahNumber.toString().padStart(3, '0');
         const indexInfo = audioIndex?.[ayahNumber] || audioIndex?.[ayahPadded];
@@ -68,6 +74,7 @@ class AudioRepository {
             fileSize = indexInfo.size;
         }
         else {
+            // Fallback to stat the file
             const surahPadded = surahId.toString().padStart(3, '0');
             const audioPath = path_1.default.join(database_config_1.DATA_CONFIG.BASE_PATH, `source/audio/${surahPadded}/${ayahPadded}.mp3`);
             try {
@@ -75,6 +82,7 @@ class AudioRepository {
                 fileSize = stats.size;
             }
             catch (error) {
+                // Ignore stat errors
             }
         }
         return {

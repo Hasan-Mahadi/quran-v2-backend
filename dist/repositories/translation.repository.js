@@ -1,4 +1,9 @@
 "use strict";
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// src/repositories/translation.repository.ts
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -9,8 +14,9 @@ const fileSystem_util_1 = require("../utils/fileSystem.util");
 const database_config_1 = require("../config/database.config");
 const logger_util_1 = require("../utils/logger.util");
 class TranslationRepository {
+    fileSystem;
+    translationCache = new Map();
     constructor() {
-        this.translationCache = new Map();
         this.fileSystem = fileSystem_util_1.FileSystemUtil.getInstance();
     }
     getCacheKey(surahId, language) {
@@ -42,7 +48,9 @@ class TranslationRepository {
             }
             const translationData = await this.fileSystem.loadJSON(translationPath);
             const translationMap = new Map();
+            // Handle your actual translation structure with 'verse' object
             if (translationData.verse) {
+                // Format: { verse: { verse_1: "text", verse_2: "text", ... } }
                 for (let i = 1; i <= (translationData.count || 100); i++) {
                     const verseKey = `verse_${i}`;
                     const translation = translationData.verse[verseKey];
@@ -52,6 +60,7 @@ class TranslationRepository {
                 }
             }
             else if (Array.isArray(translationData)) {
+                // Format: [{ ayah: 1, translation: "text" }, ...]
                 translationData.forEach((item) => {
                     const ayahNumber = item.ayah || item.ayahNumber || item.number;
                     const text = item.translation || item.text || item.content;
@@ -61,6 +70,7 @@ class TranslationRepository {
                 });
             }
             else if (typeof translationData === 'object') {
+                // Format: { "1": "text", "2": "text" }
                 for (const [key, value] of Object.entries(translationData)) {
                     const ayahNumber = parseInt(key);
                     if (!isNaN(ayahNumber) && value) {

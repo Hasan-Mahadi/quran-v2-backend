@@ -15,6 +15,7 @@ class ErrorHandlerMiddleware {
         if (error instanceof error_util_1.AppError) {
             return response_util_1.ApiResponse.error(res, error.code, error.message, process.env.NODE_ENV === 'development' ? error.details : undefined, error.statusCode);
         }
+        // Handle unknown errors
         return response_util_1.ApiResponse.error(res, 'INTERNAL_SERVER_ERROR', 'An unexpected error occurred', process.env.NODE_ENV === 'development' ? { message: error.message } : undefined, api_constants_1.HTTP_STATUS.INTERNAL_SERVER_ERROR);
     }
 }

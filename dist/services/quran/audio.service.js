@@ -1,4 +1,9 @@
 "use strict";
+/* eslint-disable @typescript-eslint/require-await */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AudioService = void 0;
 const audio_repository_1 = require("../../repositories/audio.repository");
@@ -6,6 +11,8 @@ const surah_repository_1 = require("../../repositories/surah.repository");
 const error_util_1 = require("../../utils/error.util");
 const logger_util_1 = require("../../utils/logger.util");
 class AudioService {
+    audioRepository;
+    surahRepository;
     constructor() {
         this.audioRepository = new audio_repository_1.AudioRepository();
         this.surahRepository = new surah_repository_1.SurahRepository();

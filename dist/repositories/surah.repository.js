@@ -1,4 +1,10 @@
 "use strict";
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+// src/repositories/surah.repository.ts
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -10,9 +16,10 @@ const database_config_1 = require("../config/database.config");
 const logger_util_1 = require("../utils/logger.util");
 const error_util_1 = require("../utils/error.util");
 class SurahRepository {
+    fileSystem;
+    surahsCache = new Map();
+    indexCache = null;
     constructor() {
-        this.surahsCache = new Map();
-        this.indexCache = null;
         this.fileSystem = fileSystem_util_1.FileSystemUtil.getInstance();
     }
     async findAll() {
@@ -38,13 +45,14 @@ class SurahRepository {
         try {
             const surahPath = path_1.default.join(database_config_1.DATA_CONFIG.BASE_PATH, database_config_1.DATA_CONFIG.getSurahFile(id));
             const surahData = await this.fileSystem.loadJSON(surahPath);
+            // Transform your data structure to a consistent format
             const normalizedData = {
                 number: parseInt(surahData.index),
                 name: surahData.name,
                 nameArabic: surahData.name,
                 englishName: surahData.name,
                 numberOfAyahs: surahData.count,
-                revelationType: 'Meccan',
+                revelationType: 'Meccan', // Default, will be updated from index
                 ayahs: this.convertVersesToAyahs(surahData.verse, surahData.count),
             };
             this.surahsCache.set(id, normalizedData);

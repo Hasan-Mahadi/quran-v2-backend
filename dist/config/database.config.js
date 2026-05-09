@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DATA_CONFIG = void 0;
+// src/config/database.config.ts
 const path_1 = __importDefault(require("path"));
 exports.DATA_CONFIG = {
     BASE_PATH: process.env.DATA_PATH || './src/data/quran-dataset',
